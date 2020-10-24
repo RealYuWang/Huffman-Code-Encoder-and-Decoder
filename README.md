@@ -14,3 +14,5 @@ C/C++ Data Structure  Course Design - HuffmanCode NJAU
 
 本系统使用C/C++语言实现，仅供参考，请不要全盘照抄！
 
+可在VC++6.0上打开SourceCode中的dsw文件导入项目，或者直接整合两.c文运行即可。
+
