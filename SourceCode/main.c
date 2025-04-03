@@ -5,57 +5,56 @@ int main()
 	HuffmanCode huffCode;
 	FILE *fp;
 	char ch,filename[20];
-    int i=0,k=0,ln[93];//´æ·Å¸÷¸ö×Ö·û³öÏÖ´ÎÊı£¬93ÎªÎÄ±¾ÎÄµµ¿ÉÄÜ³öÏÖµÄËùÓĞ×Ö·û
-    int *w,validNum=0;//w´æ·Å¸÷×Ö·ûÈ¨Öµ£¬validNumÎª×Ö·ûÖÖÀàÊıÁ¿
-    char *position;//±àÂëĞèÒª,¼ÇÂ¼¶ÔÓ¦Î»ÖÃµÄ×Ö·û
+    int i=0,k=0,ln[93];//å­˜æ”¾å„ä¸ªå­—ç¬¦å‡ºç°æ¬¡æ•°ï¼Œ93ä¸ºæ–‡æœ¬æ–‡æ¡£å¯èƒ½å‡ºç°çš„æ‰€æœ‰å­—ç¬¦
+    int *w,validNum=0;//wå­˜æ”¾å„å­—ç¬¦æƒå€¼ï¼ŒvalidNumä¸ºå­—ç¬¦ç§ç±»æ•°é‡
+    char *position;//ç¼–ç éœ€è¦,è®°å½•å¯¹åº”ä½ç½®çš„å­—ç¬¦
     int control,flag=1;
 
-    for(i=0;i<93;i++) ln[i]=0;//¸÷×Ö·û³öÏÖ´ÎÊı³õÊ¼ÖµÎª0
-    printf("×÷Õß£º ÍõÓî, ¼Æ¿Æ182, Ñ§ºÅ:19218201\n\n");
+    for(i=0;i<93;i++) ln[i]=0;//å„å­—ç¬¦å‡ºç°æ¬¡æ•°åˆå§‹å€¼ä¸º0
     while(1)
     {
         StartMenu();
-        printf("ÇëÊäÈëÄãÒª½øĞĞµÄ²Ù×÷£¨Êı×Ö£©£º");
+        printf("è¯·è¾“å…¥ä½ è¦è¿›è¡Œçš„æ“ä½œï¼ˆæ•°å­—ï¼‰ï¼š");
         scanf("%d",&control);
         switch(control){
             case 1:
 			Choices();
-            printf("ÊäÈëÄãÏë¶ÁÈ¡µÄÎÄ¼şÃû£º"); 
+            printf("è¾“å…¥ä½ æƒ³è¯»å–çš„æ–‡ä»¶åï¼š"); 
             scanf("%s",filename);
             if(!(fp=fopen(filename,"r")))
             {
-                printf("ÎŞ·¨´ò¿ªÎÄ¼ş£¡ÇëÈ·±£ÊäÈëÒÑ´æÔÚµÄÎÄ¼şÃû£¡\n");
+                printf("æ— æ³•æ‰“å¼€æ–‡ä»¶ï¼è¯·ç¡®ä¿è¾“å…¥å·²å­˜åœ¨çš„æ–‡ä»¶åï¼\n");
                 exit(-2);
             }
-            //´ËÑ­»·Í³¼Æ²»Í¬×Ö·û³öÏÖµÄ´ÎÊı
+            //æ­¤å¾ªç¯ç»Ÿè®¡ä¸åŒå­—ç¬¦å‡ºç°çš„æ¬¡æ•°
             while(ch!=EOF)
             {
                 ch=fgetc(fp);
                 if(ch>=32&&ch<=122)
-                    ln[ch-' ']++;//Õâ91¸ö¾ùÎª³£¹æ×Ö·û£¬°üÀ¨¿Õ¸ñ
+                    ln[ch-' ']++;//è¿™91ä¸ªå‡ä¸ºå¸¸è§„å­—ç¬¦ï¼ŒåŒ…æ‹¬ç©ºæ ¼
                 else if(ch==10)
-                    ln[91]++;//´ËÎª»»ĞĞ·û
+                    ln[91]++;//æ­¤ä¸ºæ¢è¡Œç¬¦
                 else 
                     ln[92]++;
-                putchar(ch);//Êä³öÎÄµµÄÚÈİ
+                putchar(ch);//è¾“å‡ºæ–‡æ¡£å†…å®¹
             }
             fclose(fp);
 			printf("\n");
-            //Êä³öÍ³¼Æ½á¹û
+            //è¾“å‡ºç»Ÿè®¡ç»“æœ
             for(i=0;i<93;i++)
             {
                 if(ln[i]!=0){
-                    validNum++;//¼ÆËã³öÏÖµÄ×Ö·ûµÄÖÖÀà
-                    if(i==91) printf("»Ø³µ·û ³öÏÖ´ÎÊı %d\n",ln[i]);
-                    else if(i==92) printf("»»ĞĞ·û ³öÏÖ´ÎÊı %d\n",ln[i]);
-                    else printf(" %c ³öÏÖ´ÎÊı£º%d\n",' '+i,ln[i]);
+                    validNum++;//è®¡ç®—å‡ºç°çš„å­—ç¬¦çš„ç§ç±»
+                    if(i==91) printf("å›è½¦ç¬¦ å‡ºç°æ¬¡æ•° %d\n",ln[i]);
+                    else if(i==92) printf("æ¢è¡Œç¬¦ å‡ºç°æ¬¡æ•° %d\n",ln[i]);
+                    else printf(" %c å‡ºç°æ¬¡æ•°ï¼š%d\n",' '+i,ln[i]);
                 }
             }
-	        printf("\n±¾ÎÄÖĞ¹²ÓĞ%dÖÖ²»Í¬µÄ×Ö·û¡£\n",validNum);
-            //ÒòÎªÆğ³õ²»ÖªµÀ¾ßÌå×Ö¸®ÖÖÀà£¬Òò´ËÏÖÔÚ¶¯Ì¬·Ö²¼´æ·ÅÈ¨ÖØµÄÊı×é
+	        printf("\næœ¬æ–‡ä¸­å…±æœ‰%dç§ä¸åŒçš„å­—ç¬¦ã€‚\n",validNum);
+            //å› ä¸ºèµ·åˆä¸çŸ¥é“å…·ä½“å­—åºœç§ç±»ï¼Œå› æ­¤ç°åœ¨åŠ¨æ€åˆ†å¸ƒå­˜æ”¾æƒé‡çš„æ•°ç»„
             w=(int*)malloc((validNum)*sizeof(int));
             position=(char*)malloc((validNum)*sizeof(char));
-            //ÊäÈëÊı¾İ
+            //è¾“å…¥æ•°æ®
 	        for(i=0;i<93;i++)
                 if(ln[i]!=0){
                     w[k]=ln[i];
@@ -64,37 +63,37 @@ int main()
                     else position[k]=i+' ';
                     k++;
                 }
-            printf("%sÎÄ¼ş´ò¿ª²¢¶ÁÈ¡³É¹¦¡£\n",filename);
-            printf("ÇëÖ´ĞĞÏÂÒ»²½²Ù×÷¡£\n\n\n");
+            printf("%sæ–‡ä»¶æ‰“å¼€å¹¶è¯»å–æˆåŠŸã€‚\n",filename);
+            printf("è¯·æ‰§è¡Œä¸‹ä¸€æ­¥æ“ä½œã€‚\n\n\n");
             break;
             case 2:
             GenerateHuffmanTree(&huffTree,w,validNum);
 	        Encode(&huffTree,&huffCode,validNum,ln);
-            printf("ÇëÖ´ĞĞÏÂÒ»²½²Ù×÷¡£\n\n\n");
+            printf("è¯·æ‰§è¡Œä¸‹ä¸€æ­¥æ“ä½œã€‚\n\n\n");
             break;
             case 3:
             Compression(&huffTree,&huffCode,validNum,filename,position);
-            printf("±àÂëÍê³É¡£ÒÑĞ´ÈëTextcode.hufÎÄ¼şÖĞ¡£\n");
-            printf("ÇëÖ´ĞĞÏÂÒ»²½²Ù×÷¡£\n\n\n");
+            printf("ç¼–ç å®Œæˆã€‚å·²å†™å…¥Textcode.hufæ–‡ä»¶ä¸­ã€‚\n");
+            printf("è¯·æ‰§è¡Œä¸‹ä¸€æ­¥æ“ä½œã€‚\n\n\n");
             break;
             case 4:
             CompressionRate(filename);
-            printf("ÇëÖ´ĞĞÏÂÒ»²½²Ù×÷¡£\n\n\n");
+            printf("è¯·æ‰§è¡Œä¸‹ä¸€æ­¥æ“ä½œã€‚\n\n\n");
             break;
             case 5:
             TransCode(&huffTree,position,validNum,filename);
-            printf("·­ÒëÍê³É¡£ÒÑĞ´ÈëTranslation.txtÎÄ¼şÖĞ\n");
-            printf("ÇëÖ´ĞĞÏÂÒ»²½²Ù×÷¡£\n\n\n");
+            printf("ç¿»è¯‘å®Œæˆã€‚å·²å†™å…¥Translation.txtæ–‡ä»¶ä¸­\n");
+            printf("è¯·æ‰§è¡Œä¸‹ä¸€æ­¥æ“ä½œã€‚\n\n\n");
             break;
             case 0:
             flag=0;
             break;
-            default:printf("ÎŞĞ§Ö¸Áî£¡ÇëÖØĞÂÊäÈë£¡\n");
+            default:printf("æ— æ•ˆæŒ‡ä»¤ï¼è¯·é‡æ–°è¾“å…¥ï¼\n");
             continue;
         }
         if(flag==0)
         break;
     }
-    printf("\n\n¸ĞĞ»ÄúµÄÊ¹ÓÃ£¡ÄúÏÖÔÚ¿ÉÒÔÔÚ³ÌĞòËùÔÚÎÄ¼şÖĞÕÒµ½Textcode.hufÓëTranslation.txtÎÄ¼ş¡£\n\n\n");
+    printf("\n\næ„Ÿè°¢æ‚¨çš„ä½¿ç”¨ï¼æ‚¨ç°åœ¨å¯ä»¥åœ¨ç¨‹åºæ‰€åœ¨æ–‡ä»¶ä¸­æ‰¾åˆ°Textcode.hufä¸Translation.txtæ–‡ä»¶ã€‚\n\n\n");
     return 0;
 }
